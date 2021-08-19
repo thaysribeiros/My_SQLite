@@ -1,6 +1,6 @@
 # My_SQLite
-A simplified version of the real SQLite with a command line interface (CLI).
-Project developed by me and Tapabrata during our Full Stack Development Program at Qwasar Silicon Valley. 
+A simplified version of the real SQLite with a command-line interface (CLI).
+Project developed by me and my colleague Tapabrata during our Full Stack Development Program at Qwasar Silicon Valley. 
 
 
 ## Description
