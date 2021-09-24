@@ -25,9 +25,6 @@ module Insert
     def _print_insert
         puts "INSERT INTO #{@table_name} "
         puts "VALUES #{@insert_vals} "
-        # if (@where_col)
-        #     puts "WHERE #{@where_col} = #{@where_col_val}"
-        # end
     end
 
     #=============
