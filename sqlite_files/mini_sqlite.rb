@@ -19,6 +19,7 @@ class MySqliteRequest
         @column_join_db_b = nil
         @join_flag = 0
         @order_flag = 0
+        @where_flag = 0
     end
 
     def reset
@@ -46,8 +47,16 @@ class MySqliteRequest
     end
 
     def where(column_name, criteria)
-        @where_col = column_name
-        @where_col_val = criteria
+        if (@where_flag == 0)
+            @where_col = column_name
+            @where_col_val = criteria
+            @where_flag = 1
+        elsif (@where_flag == 1)
+            @where_col_1 = column_name
+            @where_col_val_1 = criteria
+        else
+            raise "Error: too many where clauses"
+        end
     end
 
     def run
