@@ -37,7 +37,11 @@ module SelectCli
             is_param_not_cmd(arr[idx + 3]))
             return "INVALID => SELECT accepts up to two columns"
         else
-            request.select([select_col[0], arr[idx + 2]])
+            if select_col[1] == nil
+                request.select([select_col[0], arr[idx + 2]])
+            else
+                request.select([select_col[0], select_col[1]])
+            end
             return true
         end
     end
@@ -113,6 +117,8 @@ module SelectCli
             if arr[idx + x] and arr[idx + x].include?("'")
                 arr[idx + x].gsub!("'","")
                 arr[idx + x].gsub!(";","")
+                where_val << arr[idx + x]
+            elsif arr[idx + x]
                 where_val << arr[idx + x]
             end
             x += 1
@@ -273,7 +279,7 @@ module SelectCli
         if validate_select_query(result)
             val_result = validate_select_query_params(arr, request)
             if val_result == true
-                p request.run
+                request.run
             else
                 p val_result
             end    
