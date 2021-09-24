@@ -64,6 +64,4 @@ module Update
             end
         end
     end
-    
-    
 end
