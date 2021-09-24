@@ -58,7 +58,7 @@ module UpdateCli
             if before_hash[idx + 1]
                 result[before_hash[idx]] = before_hash[idx + 1].split("'")[1]
             else
-                return "Invalid index in SET"
+                return "INVALID: SET col and criteria are not passed."
             end
             idx += 2
         end
