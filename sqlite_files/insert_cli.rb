@@ -68,6 +68,7 @@ module InsertCli
         headers = request._get_header
         while idx < val.length
             if val[idx]
+
                 result[headers[idx]] = val[idx]
             else
                 return "Invalid index in VALUES"
@@ -80,12 +81,20 @@ module InsertCli
 
     def get_hash(arr, idx, before_hash, request, result)
         val = []
+        no_space_arr = []
         while idx < arr.length - 1
             arr[idx + 1].gsub!("(", "")
-            arr[idx + 1].gsub!(",", "")
             arr[idx + 1].gsub!(")", "")
             arr[idx + 1].gsub!(";", "")
-            val << arr[idx + 1]
+            if arr[idx + 2] == nil
+                no_space_arr = arr[idx + 1].split(",")
+                no_space_arr.each do |item|
+                    val << item
+                end
+            else
+                arr[idx + 1].gsub!(",", "")
+                val << arr[idx + 1]
+            end
             idx += 1
         end
         return _set_hash(val, result, request)
